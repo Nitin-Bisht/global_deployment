@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Float, ContactShadows, Sparkles, Line, Sphere, MeshTransmissionMaterial } from "@react-three/drei"
+import { Float, ContactShadows, Sparkles, Line, Sphere } from "@react-three/drei"
 import * as THREE from "three"
 
 // Major Global Financial & Orchestration Hubs
@@ -128,24 +128,19 @@ export function PremiumGlassObject() {
                         />
                     </Sphere>
 
-                    {/* The Glass Shell: MeshTransmissionMaterial for the "Glossy Billion-Dollar" look */}
+                    {/* The Glass Shell: Highly performant physical material for the glass look */}
                     <mesh>
                         <sphereGeometry args={[2.0, 64, 64]} />
-                        <MeshTransmissionMaterial
-                            backside
-                            backsideThickness={5}
-                            thickness={2}
-                            chromaticAberration={0.05}
-                            anisotropy={0.3}
-                            distortion={0.1}
-                            distortionScale={0.1}
-                            temporalDistortion={0.1}
-                            clearcoat={1}
-                            attenuationDistance={0.5}
-                            attenuationColor="#ffffff"
+                        <meshPhysicalMaterial
                             color="#ffffff"
                             transparent
-                            opacity={0.15}
+                            opacity={0.25}
+                            roughness={0.1}
+                            metalness={0.8}
+                            clearcoat={1.0}
+                            clearcoatRoughness={0.1}
+                            envMapIntensity={2}
+                            side={THREE.DoubleSide}
                         />
                     </mesh>
 

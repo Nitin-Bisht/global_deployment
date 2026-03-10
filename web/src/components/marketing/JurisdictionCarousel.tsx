@@ -87,7 +87,7 @@ export function JurisdictionCarousel() {
                     <p className="text-[10px] font-display uppercase tracking-[0.5em] text-primary glow-text">
                         Global Reach
                     </p>
-                    <h2 className="text-4xl lg:text-6xl font-serif italic lowercase text-white mix-blend-plus-lighter leading-none">
+                    <h2 className="text-4xl lg:text-6xl font-serif italic lowercase text-white leading-none">
                         190+ Jurisdictions
                     </h2>
                     <p className="text-slate-500 text-xs max-w-sm mx-auto font-light hidden lg:block">
@@ -181,13 +181,8 @@ function JurisdictionCard({
     // Opacity
     const opacity = useTransform(focus, [0, 0.2, 1], [0.08, 0.55, 1])
 
-    // Filter: desaturate + dim when unfocused (cleaner than sepia)
-    const filter = useTransform(focus, (f) => {
-        const blur = (1 - f) * 5
-        const saturation = 15 + f * 85
-        const brightness = 0.52 + f * 0.48
-        return `blur(${blur.toFixed(1)}px) saturate(${saturation.toFixed(0)}%) brightness(${brightness.toFixed(2)})`
-    })
+    // Filter: removed heavy blur/saturate filters for performance.
+    const filter = "none"
 
     // Fan-out X: (1 - focus) fan
     const offsetMultiplier = index - (total - 1) / 2
@@ -215,7 +210,7 @@ function JurisdictionCard({
     return (
         <motion.div
             style={{ x, y, scale, zIndex, filter, opacity }}
-            className="absolute flex flex-col items-end justify-end w-[88vw] lg:w-[44vw] max-w-[760px] aspect-[4/3] lg:aspect-[16/10] rounded-3xl overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.65)] border border-white/10"
+            className="absolute flex flex-col items-end justify-end w-[88vw] lg:w-[44vw] max-w-[min(760px,100vw)] aspect-[4/3] lg:aspect-[16/10] rounded-3xl overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.65)] border border-white/10"
         >
             {/* Photo */}
             <Image
@@ -230,7 +225,7 @@ function JurisdictionCard({
             {/* Per-card accent tint overlay */}
             <motion.div
                 style={{ opacity: tintOpacity, backgroundColor: jurisdiction.tint }}
-                className="absolute inset-0 mix-blend-screen pointer-events-none"
+                className="absolute inset-0 pointer-events-none"
             />
 
             {/* Gradient veil */}
@@ -246,7 +241,7 @@ function JurisdictionCard({
             {/* Data panel */}
             <motion.div
                 style={{ opacity: panelOpacity, y: panelY, scale: panelScale }}
-                className="relative z-10 m-4 lg:m-5 p-5 lg:p-6 rounded-2xl bg-[#020817]/75 backdrop-blur-xl border border-white/10 origin-bottom"
+                className="relative z-10 m-4 lg:m-5 p-5 lg:p-6 rounded-2xl bg-[#020817]/90 border border-white/10 origin-bottom"
             >
                 <div className="grid lg:grid-cols-[1.5fr_1fr] gap-4 lg:gap-8 items-end">
                     {/* Left: name + desc */}

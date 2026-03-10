@@ -3,6 +3,7 @@
 import { ReactNode } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { motion } from "framer-motion"
 import {
     Coins, LayoutDashboard, UserCircle, LogOut, ChevronRight,
     ShieldCheck, MessageSquare, Globe, ListChecks,
@@ -36,31 +37,40 @@ export function DashboardShell({
     const isAdmin = userRole === "admin"
 
     return (
-        <div className="flex min-h-screen bg-[#02040a] text-slate-300">
+        <div className="flex min-h-screen bg-[#010308] text-slate-300 selection:bg-primary/30 selection:text-white">
             {/* Sidebar */}
-            <aside className="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/10 bg-[#040814]/80 backdrop-blur-xl">
-                <div className="flex h-16 items-center gap-3 px-6 shadow-sm">
-                    <VistarLogo className="h-6 w-6" />
-                    <span className="font-display text-lg uppercase tracking-wider text-white">VISTAR</span>
+            <aside className="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/[0.06] bg-[#020510]/95 backdrop-blur-2xl">
+                <div className="flex h-[72px] items-center gap-3 px-6 shadow-sm relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-50 pointer-events-none" />
+                    <VistarLogo className="h-6 w-6 relative z-10" />
+                    <span className="font-display text-lg uppercase tracking-widest text-white relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">VISTAR</span>
                 </div>
 
-                <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+                <div className="flex-1 overflow-y-auto px-4 py-8 space-y-8 no-scrollbar">
                     {/* Standard nav */}
-                    <nav className="flex flex-col gap-1">
+                    <nav className="flex flex-col gap-1.5 relative z-10">
                         {navigation.map((item) => {
                             const isActive = pathname === item.href
                             return (
                                 <Link
                                     key={item.name}
                                     href={item.href}
-                                    className={`group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all ${isActive
-                                        ? "bg-white/10 text-white"
-                                        : "text-slate-400 hover:bg-white/[0.04] hover:text-slate-200"
+                                    className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
+                                        ? "text-white"
+                                        : "text-slate-400 hover:text-slate-200"
                                         }`}
                                 >
-                                    <item.icon className={`h-4 w-4 shrink-0 ${isActive ? "text-primary" : "text-slate-500 group-hover:text-slate-300"}`} />
-                                    {item.name}
-                                    {isActive && <ChevronRight className="ml-auto h-3.5 w-3.5 text-primary/50" />}
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="active-nav"
+                                            className="absolute inset-0 rounded-xl bg-white/10 border border-white/10 drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+                                            initial={false}
+                                            transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                                        />
+                                    )}
+                                    <item.icon className={`h-[18px] w-[18px] shrink-0 relative z-10 transition-colors ${isActive ? "text-primary drop-shadow-[0_0_8px_rgba(0,210,255,0.5)]" : "text-slate-500 group-hover:text-slate-300"}`} />
+                                    <span className="relative z-10">{item.name}</span>
+                                    {isActive && <ChevronRight className="ml-auto h-4 w-4 text-primary/70 relative z-10" />}
                                 </Link>
                             )
                         })}
@@ -68,23 +78,34 @@ export function DashboardShell({
 
                     {/* Admin nav — rendered only for admins */}
                     {isAdmin && (
-                        <div>
-                            <p className="px-3 mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-600">Admin</p>
-                            <nav className="flex flex-col gap-1">
+                        <div className="relative z-10">
+                            <div className="px-3 mb-3 flex items-center gap-2">
+                                <span className="text-[10px] font-display uppercase tracking-[0.2em] text-slate-500">Admin Controls</span>
+                                <div className="h-px flex-1 bg-gradient-to-r from-slate-700 to-transparent" />
+                            </div>
+                            <nav className="flex flex-col gap-1.5">
                                 {adminNavigation.map((item) => {
                                     const isActive = pathname.startsWith(item.href)
                                     return (
                                         <Link
                                             key={item.name}
                                             href={item.href}
-                                            className={`group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all ${isActive
-                                                ? "bg-blue-500/10 text-blue-300"
-                                                : "text-slate-500 hover:bg-white/[0.04] hover:text-slate-200"
+                                            className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
+                                                ? "text-blue-50"
+                                                : "text-slate-400 hover:text-slate-200"
                                                 }`}
                                         >
-                                            <item.icon className={`h-4 w-4 shrink-0 ${isActive ? "text-blue-400" : "text-slate-600 group-hover:text-slate-400"}`} />
-                                            {item.name}
-                                            {isActive && <ChevronRight className="ml-auto h-3.5 w-3.5 text-blue-400/50" />}
+                                            {isActive && (
+                                                <motion.div
+                                                    layoutId="active-admin-nav"
+                                                    className="absolute inset-0 rounded-xl bg-blue-500/15 border border-blue-500/20 drop-shadow-[0_0_15px_rgba(59,130,246,0.1)]"
+                                                    initial={false}
+                                                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                                                />
+                                            )}
+                                            <item.icon className={`h-[18px] w-[18px] shrink-0 relative z-10 transition-colors ${isActive ? "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" : "text-slate-500 group-hover:text-slate-300"}`} />
+                                            <span className="relative z-10">{item.name}</span>
+                                            {isActive && <ChevronRight className="ml-auto h-4 w-4 text-blue-400/70 relative z-10" />}
                                         </Link>
                                     )
                                 })}
@@ -93,37 +114,41 @@ export function DashboardShell({
                     )}
                 </div>
 
-                <div className="border-t border-white/10 p-4">
-                    <div className="flex items-center gap-3 rounded-lg bg-white/[0.02] p-3 border border-white/5">
-                        <UserCircle className="h-8 w-8 text-primary" />
-                        <div className="flex-1 overflow-hidden">
-                            <p className="truncate text-xs font-semibold text-white">{userEmail}</p>
-                            <p className="text-[10px] uppercase tracking-widest text-primary/80">{isAdmin ? "Admin" : "Operator"}</p>
+                <div className="border-t border-white/[0.08] p-4 bg-gradient-to-t from-black/40 to-transparent">
+                    <div className="group flex items-center gap-3 rounded-xl bg-white/[0.02] p-3 border border-white/[0.06] hover:bg-white/[0.04] transition-colors cursor-default relative overflow-hidden shadow-lg">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                        <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-[#0a1224] border border-white/10 shadow-inner">
+                            <UserCircle className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex-1 overflow-hidden relative z-10">
+                            <p className="truncate text-xs font-semibold text-white/90">{userEmail}</p>
+                            <p className="text-[9px] font-display uppercase tracking-[0.16em] text-primary/80 mt-0.5">{isAdmin ? "System Admin" : "Platform Operator"}</p>
                         </div>
                     </div>
-                    <div className="mt-3">
-                        <LogoutButton variant="ghost" className="w-full justify-start gap-3 px-3 py-2 text-sm text-slate-400 hover:bg-red-500/10 hover:text-red-400">
+                    <div className="mt-2">
+                        <LogoutButton variant="ghost" className="w-full justify-start gap-3 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:bg-red-500/10 hover:text-red-400 rounded-xl transition-all duration-300">
                             <LogOut className="h-4 w-4 shrink-0" />
-                            Sign out
+                            Secure Disconnect
                         </LogoutButton>
                     </div>
                 </div>
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 pl-64 relative">
-                {/* Background effects for main content area */}
+            <main className="flex-1 pl-64 relative min-h-screen flex flex-col">
+                {/* Background layers */}
                 <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden pl-64">
                     {/* Dark base */}
-                    <div className="absolute inset-0 bg-[#02040a] z-0" />
+                    <div className="absolute inset-0 bg-[#010308] z-0" />
 
-                    {/* Luminous Glows */}
-                    <div className="absolute top-[10%] left-[20%] h-[50%] w-[50%] bg-cyan-500/5 blur-[120px] rounded-full mix-blend-screen z-0" />
-                    <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[400px] bg-amber-500/5 blur-[120px] rounded-full mix-blend-screen z-0" />
+                    {/* Deep Cinematic Glows */}
+                    <div className="absolute top-0 left-1/4 w-[800px] h-[600px] bg-primary/5 blur-[120px] rounded-full mix-blend-screen -translate-y-1/2" />
+                    <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-amber-500/5 blur-[150px] rounded-full mix-blend-screen translate-y-1/4 translate-x-1/4" />
+                    <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-blue-600/[0.03] blur-[100px] rounded-full mix-blend-screen" />
 
                     {/* Fine grain overlay without external asset requests */}
                     <div
-                        className="absolute inset-0 z-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+                        className="absolute inset-0 z-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
                         style={{
                             backgroundImage:
                                 "linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.08) 75%, transparent 75%, transparent)",
@@ -132,8 +157,13 @@ export function DashboardShell({
                     />
                 </div>
 
-                <div className="relative z-10 w-full px-8 py-8 lg:px-12">
-                    {children}
+                <div className="relative z-20 w-full flex-1 flex flex-col">
+                    {/* Top ambient glow bar */}
+                    <div className="h-1 w-full bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-50 absolute top-0 inset-x-0" />
+
+                    <div className="px-8 py-10 lg:px-12 flex-1 relative mt-[1px]">
+                        {children}
+                    </div>
                 </div>
             </main>
         </div>

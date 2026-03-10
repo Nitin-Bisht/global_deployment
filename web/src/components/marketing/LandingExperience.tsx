@@ -82,7 +82,7 @@ export function LandingExperience({ metrics }: { metrics: LandingMetrics }) {
     ]
 
     return (
-        <div className="bg-[#02040a] min-h-screen selection:bg-primary/30 selection:text-white relative">
+        <div className="bg-[#02040a] min-h-screen selection:bg-primary/30 selection:text-white relative overflow-x-hidden">
             <OrganicLoader shouldReduceMotion={Boolean(shouldReduceMotion)} />
 
             <motion.div
@@ -185,9 +185,9 @@ export function LandingExperience({ metrics }: { metrics: LandingMetrics }) {
                             <p className="text-xs font-display uppercase tracking-[0.55em] text-primary glow-text">
                                 Begin Your Institutional Journey
                             </p>
-                            <h2 data-cursor="read" className="text-[14vw] lg:text-[9rem] leading-[0.88] tracking-tighter text-white">
+                            <h2 data-cursor="read" className="text-[12vw] sm:text-[10vw] lg:text-[9rem] leading-[0.85] tracking-tighter text-white">
                                 READY TO <br />
-                                <span className="italic font-serif text-primary lowercase mt-2 block">incorporate.</span>
+                                <span className="italic font-serif text-primary lowercase mt-2 block break-words sm:break-normal max-w-[90vw]">incorporate.</span>
                             </h2>
                             <p className="max-w-xl mx-auto text-base lg:text-xl text-slate-500 font-light leading-relaxed">
                                 Join 3,200+ entities already operating through VISTAR&apos;s institutional standard.
@@ -210,7 +210,7 @@ function HeroGlossFlow({ shouldReduceMotion }: { shouldReduceMotion: boolean }) 
                 className="absolute inset-0"
                 style={{
                     background:
-                        "radial-gradient(circle at 16% 16%, rgba(34,211,238,0.26) 0%, transparent 40%), radial-gradient(circle at 84% 10%, rgba(245,158,11,0.2) 0%, transparent 34%), linear-gradient(180deg, #030714 0%, #050d1f 44%, #020611 100%)",
+                        "radial-gradient(circle at 16% 16%, rgba(34,211,238,0.15) 0%, transparent 40%), radial-gradient(circle at 84% 10%, rgba(245,158,11,0.12) 0%, transparent 34%), linear-gradient(180deg, #030714 0%, #050d1f 44%, #020611 100%)",
                 }}
             />
 
@@ -218,23 +218,20 @@ function HeroGlossFlow({ shouldReduceMotion }: { shouldReduceMotion: boolean }) 
                 className="absolute -left-[22%] -top-[14%] h-[68%] w-[150%]"
                 style={{
                     background:
-                        "radial-gradient(ellipse at center, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.07) 28%, transparent 72%)",
-                    mixBlendMode: "screen",
-                    opacity: 0.66,
+                        "radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 28%, transparent 72%)",
                 }}
-                animate={shouldReduceMotion ? undefined : { x: ["-3%", "5%", "-3%"], y: ["0%", "6%", "0%"], rotate: [-1.4, 1.2, -1.4] }}
-                transition={{ duration: 21, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+                animate={shouldReduceMotion ? undefined : { opacity: [0.4, 0.6, 0.4] }}
+                transition={{ duration: 15, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
             />
 
             <motion.div
                 className="absolute -left-[16%] top-[24%] h-[58%] w-[140%]"
                 style={{
                     background:
-                        "radial-gradient(ellipse at center, rgba(14,165,233,0.2) 0%, rgba(14,165,233,0.05) 36%, transparent 74%)",
-                    opacity: 0.72,
+                        "radial-gradient(ellipse at center, rgba(14,165,233,0.15) 0%, rgba(14,165,233,0.03) 36%, transparent 74%)",
                 }}
-                animate={shouldReduceMotion ? undefined : { x: ["4%", "-4%", "4%"], y: ["0%", "-4%", "0%"] }}
-                transition={{ duration: 18, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+                animate={shouldReduceMotion ? undefined : { opacity: [0.5, 0.7, 0.5] }}
+                transition={{ duration: 12, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
             />
 
             <motion.div
@@ -244,19 +241,18 @@ function HeroGlossFlow({ shouldReduceMotion }: { shouldReduceMotion: boolean }) 
                         "radial-gradient(ellipse at center, rgba(245,158,11,0.14) 0%, rgba(245,158,11,0.04) 38%, transparent 76%)",
                     opacity: 0.62,
                 }}
-                animate={shouldReduceMotion ? undefined : { x: ["-1%", "6%", "-1%"], y: ["0%", "5%", "0%"] }}
-                transition={{ duration: 23, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+                animate={shouldReduceMotion ? undefined : { opacity: [0.4, 0.7, 0.4] }}
+                transition={{ duration: 18, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
             />
 
             <motion.div
                 className="absolute inset-y-0 -left-1/3 w-[170%]"
                 style={{
-                    background: "linear-gradient(106deg, transparent 44%, rgba(255,255,255,0.2) 50%, transparent 56%)",
-                    mixBlendMode: "screen",
-                    opacity: 0.2,
+                    background: "linear-gradient(106deg, transparent 44%, rgba(255,255,255,0.1) 50%, transparent 56%)",
+                    opacity: 0.3,
                 }}
-                animate={shouldReduceMotion ? undefined : { x: ["-8%", "12%"] }}
-                transition={{ duration: 8.5, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
+                animate={shouldReduceMotion ? undefined : { x: ["-4%", "6%"] }}
+                transition={{ duration: 12, repeat: shouldReduceMotion ? 0 : Infinity, ease: "easeInOut" }}
             />
         </div>
     )
@@ -352,7 +348,7 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
                                 transition={{ duration: 1.8, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
                                 className="mb-[-0.08em] pl-1"
                             >
-                                <span className="text-[7vw] lg:text-[5.5vw] font-serif italic lowercase text-[#f2c94c] drop-shadow-[0_0_15px_rgba(242,201,76,0.3)] leading-none">
+                                <span className="text-[clamp(1.5rem,7vw,4.5rem)] lg:text-[5.5vw] font-serif italic lowercase text-[#f2c94c] drop-shadow-[0_0_15px_rgba(242,201,76,0.3)] leading-none">
                                     scale.
                                 </span>
                             </motion.div>
@@ -446,7 +442,7 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
 
                 <motion.div
                     style={{ y: panelY, opacity: panelOpacity, clipPath: panelClipPath }}
-                    className="absolute inset-x-0 bottom-0 z-20 h-screen border-t border-white/10 bg-[#020817]/95 backdrop-blur-md"
+                    className="absolute inset-x-0 bottom-0 z-20 h-screen border-t border-white/10 bg-[#02050f]"
                 >
                     <motion.div
                         style={{ y: panelContentY, opacity: panelContentOpacity, scale: panelContentScale }}
@@ -528,13 +524,13 @@ function OrganicLoader({ shouldReduceMotion }: { shouldReduceMotion: boolean }) 
             {!done && (
                 <motion.div
                     key="organic-loader"
-                    exit={{ opacity: 0, scale: 2, filter: "blur(20px)" }}
+                    exit={{ opacity: 0, scale: 2 }}
                     transition={{ duration: 0.8, ease: [0.85, 0, 0.15, 1] }}
                     className="fixed inset-0 z-[1] flex items-center justify-center pointer-events-none"
                 >
                     <motion.div
-                        initial={{ scale: 0.8, opacity: 0, filter: "blur(10px)" }}
-                        animate={{ scale: [0.8, 1.1, 1], opacity: 1, filter: ["blur(10px)", "blur(0px)", "blur(4px)"] }}
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: [0.8, 1.1, 1], opacity: 1 }}
                         transition={{ duration: 1.4, ease: "easeInOut" }}
                         className="flex flex-col flex-center items-center gap-6"
                     >
@@ -572,8 +568,7 @@ function HeroTitle({ shouldReduceMotion }: { shouldReduceMotion: boolean | null 
         // Added overflow-hidden and high padding-bottom so the letters slide up from an invisible straight edge
         <h1
             aria-label="VISTAR"
-            className="text-[17.5vw] lg:text-[15vw] font-display uppercase leading-[0.82] tracking-[-0.04em] text-white mix-blend-plus-lighter flex overflow-hidden pb-4"
-            style={{ textShadow: '0 0 120px rgba(0,210,255,0.18)' }}
+            className="text-[clamp(4rem,17.5vw,12rem)] lg:text-[15vw] font-display uppercase leading-[0.82] tracking-[-0.04em] text-white flex overflow-hidden pb-4"
         >
             {letters.map((letter, i) => (
                 <motion.span
@@ -695,13 +690,12 @@ function StickySection({ feature, index, shouldReduceMotion }: { feature: Featur
     const clipProgress = useTransform(smoothProgress, [0.03, 0.22], [index === 0 ? 0 : (shouldReduceMotion ? 8 : 24), 0])
     const clipRadius = index === 0 ? 0 : 78
     const clipPath = useTransform(clipProgress, (p) => `inset(${p}% 0% 0% 0% round ${clipRadius}px ${clipRadius}px 0 0)`)
-    const imageStartInset = index === 0
-        ? "inset(6% 4% 8% 4% round 52px)"
-        : "inset(16% 10% 18% 10% round 52px)"
-    const imageReveal = useTransform(
+
+    // Replace heavy clipPath image reveal with a simple hardware-accelerated scale animation
+    const imageRevealScale = useTransform(
         smoothProgress,
         [0.05, 0.32],
-        shouldReduceMotion ? ["inset(0% 0% 0% 0% round 52px)", "inset(0% 0% 0% 0% round 52px)"] : [imageStartInset, "inset(0% 0% 0% 0% round 52px)"]
+        shouldReduceMotion ? [1, 1] : [index === 0 ? 0.94 : 0.84, 1]
     )
 
     const rotateX = useMotionValue(0)
@@ -785,10 +779,10 @@ function StickySection({ feature, index, shouldReduceMotion }: { feature: Featur
                         onMouseLeave={resetTilt}
                         style={{
                             y: yImage,
-                            scale,
+                            // Overriding the outer 'scale' var with specific image scaling logic saves a complex inset() mask computation
+                            scale: imageRevealScale,
                             rotateX: shouldReduceMotion ? 0 : smoothRotateX,
                             rotateY: shouldReduceMotion ? 0 : smoothRotateY,
-                            clipPath: imageReveal,
                             transformPerspective: 1200,
                         }}
                         className="relative aspect-[4/5] lg:aspect-square rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl order-1 lg:order-2 border border-white/8"
@@ -922,37 +916,31 @@ function EnvironmentalBackground({ scrollYProgress, shouldReduceMotion }: { scro
                 }}
             />
 
-            <motion.div
-                style={{ x: shouldReduceMotion ? 0 : lineDriftA }}
+            <div
                 className="absolute inset-y-0 -left-1/4 w-[150%]"
+                style={{ opacity: shouldReduceMotion ? 0.05 : 0.12 }}
             >
                 <div
                     className="h-full w-full"
                     style={{
                         backgroundImage:
-                            "repeating-linear-gradient(112deg, rgba(251,191,36,0.12) 0px, rgba(251,191,36,0.12) 1px, transparent 1px, transparent 140px)",
-                        opacity: 0.26,
-                        maskImage: "linear-gradient(180deg, transparent 0%, black 22%, black 72%, transparent 100%)",
-                        WebkitMaskImage: "linear-gradient(180deg, transparent 0%, black 22%, black 72%, transparent 100%)",
+                            "repeating-linear-gradient(112deg, rgba(251,191,36,0.15) 0px, rgba(251,191,36,0.15) 1px, transparent 1px, transparent 140px)",
                     }}
                 />
-            </motion.div>
+            </div>
 
-            <motion.div
-                style={{ x: shouldReduceMotion ? 0 : lineDriftB }}
+            <div
                 className="absolute inset-y-0 -left-1/4 w-[150%]"
+                style={{ opacity: shouldReduceMotion ? 0.04 : 0.08 }}
             >
                 <div
                     className="h-full w-full"
                     style={{
                         backgroundImage:
-                            "repeating-linear-gradient(70deg, rgba(56,189,248,0.14) 0px, rgba(56,189,248,0.14) 1px, transparent 1px, transparent 180px)",
-                        opacity: 0.18,
-                        maskImage: "linear-gradient(180deg, transparent 4%, black 25%, black 74%, transparent 100%)",
-                        WebkitMaskImage: "linear-gradient(180deg, transparent 4%, black 25%, black 74%, transparent 100%)",
+                            "repeating-linear-gradient(70deg, rgba(56,189,248,0.18) 0px, rgba(56,189,248,0.18) 1px, transparent 1px, transparent 180px)",
                     }}
                 />
-            </motion.div>
+            </div>
         </motion.div>
     )
 }
@@ -993,7 +981,8 @@ function Cursor({ shouldReduceMotion }: { shouldReduceMotion: boolean }) {
     const handleOnLeave = useCallback(() => setCursorType("default"), [])
 
     useEffect(() => {
-        if (shouldReduceMotion) return
+        // Disable aggressive mouse tracking on touch/mobile devices to save battery and prevent scroll jank
+        if (shouldReduceMotion || (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches)) return
 
         const move = (e: MouseEvent) => {
             mouseX.set(e.clientX)

@@ -24,8 +24,8 @@ function EarthSphere({ isMobile }: { isMobile: boolean }) {
     "/textures/earth/earth_specular_2048.jpg",
     "/textures/earth/earth_clouds_1024.png",
   ])
-  const globeSegments = isMobile ? 72 : 128
-  const cloudSegments = isMobile ? 56 : 96
+  const globeSegments = isMobile ? 48 : 128
+  const cloudSegments = isMobile ? 32 : 96
 
   const textures = useMemo(() => {
     const day = dayMap.clone()
@@ -37,7 +37,7 @@ function EarthSphere({ isMobile }: { isMobile: boolean }) {
     clouds.colorSpace = THREE.SRGBColorSpace
 
     for (const texture of [day, normal, specular, clouds]) {
-      texture.anisotropy = isMobile ? 4 : 8
+      texture.anisotropy = isMobile ? 2 : 4
       texture.wrapS = THREE.RepeatWrapping
       texture.wrapT = THREE.ClampToEdgeWrapping
       texture.minFilter = THREE.LinearMipmapLinearFilter
@@ -182,11 +182,11 @@ export function Hero3D() {
   return (
     <div className="absolute inset-0 z-0">
       <Canvas
-        dpr={[1, isMobile ? 1.5 : 2]}
+        dpr={[1, isMobile ? 1.0 : 1.5]}
         gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
         style={{ cursor: "grab", touchAction: "none" }}
         onCreated={({ gl }) => {
-          gl.toneMapping = THREE.ACESFilmicToneMapping
+          gl.toneMapping = window.innerWidth <= 768 ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping
           gl.toneMappingExposure = 1.12
           gl.outputColorSpace = THREE.SRGBColorSpace
         }}
