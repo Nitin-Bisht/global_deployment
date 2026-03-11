@@ -24,8 +24,8 @@ function Clock() {
 
     return (
         <div className="flex flex-col items-end">
-            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">Sovereign Time</span>
-            <span className="text-sm font-display text-white">{time || "00:00 AM"}</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#0a1f44]/40">Sovereign Time</span>
+            <span className="text-sm font-display text-[#0a1f44]">{time || "00:00 AM"}</span>
         </div>
     )
 }
@@ -76,7 +76,7 @@ export function Navbar() {
                 "fixed top-0 left-0 right-0 z-[100] px-10 flex items-center justify-between pointer-events-none",
                 "transition-[padding,transform,background-color,backdrop-filter,border-color] duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]",
                 isCompact
-                    ? "py-5 bg-[#020817]/62 backdrop-blur-md border-b border-white/10"
+                    ? "py-5 bg-white/90 backdrop-blur-md border-b border-[#0a1f44]/10 shadow-sm"
                     : "py-10",
                 isHidden ? "-translate-y-[120%]" : "translate-y-0",
             ].join(" ")}
@@ -85,7 +85,7 @@ export function Navbar() {
             <div className="flex items-center gap-24 pointer-events-auto">
                 <Link href="/" className="group flex items-center gap-4">
                     <XbandLogo className="h-10 w-10 relative z-10" />
-                    <span className="text-[1.45rem] sm:text-[1.6rem] font-medium tracking-[-0.02em] text-white/95 transition-colors duration-500 group-hover:text-primary">
+                    <span className="text-[1.45rem] sm:text-[1.6rem] font-medium tracking-[-0.02em] text-[#0a1f44] transition-colors duration-500 group-hover:text-[#c9a84c]">
                         XBandGlobal
                     </span>
                 </Link>
@@ -95,7 +95,7 @@ export function Navbar() {
                         <Link
                             key={link.name}
                             href={link.href}
-                            className="text-[10px] font-display uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors duration-500"
+                            className="text-[10px] font-display uppercase tracking-[0.4em] text-[#0a1f44]/50 hover:text-[#0a1f44] transition-colors duration-500"
                         >
                             {link.name}
                         </Link>
@@ -106,8 +106,8 @@ export function Navbar() {
             {/* Right Group: State Indicator */}
             <div className="flex items-center gap-8 pointer-events-auto">
                 <Clock />
-                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group hover:bg-white/10 transition-all cursor-pointer">
-                    <span className="w-1.5 h-1.5 bg-white rounded-full group-hover:scale-150 transition-transform" />
+                <div className="w-12 h-12 rounded-full border border-[#0a1f44]/15 flex items-center justify-center group hover:bg-[#0a1f44]/8 transition-all cursor-pointer">
+                    <span className="w-1.5 h-1.5 bg-[#c9a84c] rounded-full group-hover:scale-150 transition-transform" />
                 </div>
             </div>
         </motion.header>
