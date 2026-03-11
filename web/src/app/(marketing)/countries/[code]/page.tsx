@@ -10,10 +10,10 @@ type CountryPageProps = {
 export async function generateMetadata({ params }: CountryPageProps) {
     const { code } = await params
     const country = await getCountryByCode(code)
-    if (!country) return { title: "Not Found | VISTAR" }
+    if (!country) return { title: "Not Found | XbandGlobal" }
 
     return {
-        title: `${country.name} Incorporation | VISTAR`,
+        title: `${country.name} Incorporation | XbandGlobal`,
         description: `Explore business incorporation requirements and benefits for ${country.name}.`,
     }
 }

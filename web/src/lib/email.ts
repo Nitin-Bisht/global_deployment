@@ -3,8 +3,8 @@
 // - live: send to real recipient
 // - sandbox: redirect all mail to EMAIL_SANDBOX_TO
 
-const FROM = process.env.RESEND_FROM_EMAIL ?? "VISTAR <onboarding@resend.dev>"
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vistar.global"
+const FROM = process.env.RESEND_FROM_EMAIL ?? "XbandGlobal <onboarding@resend.dev>"
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://xband.global"
 const DELIVERY_MODE = (process.env.EMAIL_DELIVERY_MODE ?? "live").toLowerCase()
 const SANDBOX_TO = process.env.EMAIL_SANDBOX_TO?.trim()
 const FAIL_HARD = process.env.EMAIL_FAIL_HARD === "true"
@@ -86,14 +86,14 @@ function wrapLayout(title: string, body: string): string {
     return `
     <div style="font-family:Inter,system-ui,sans-serif;max-width:600px;margin:0 auto;background:#030811;color:#cbd5e1;border-radius:16px;overflow:hidden">
       <div style="background:#040c1e;padding:32px 40px;border-bottom:1px solid rgba(255,255,255,0.06)">
-        <span style="font-size:22px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fff">VISTAR</span>
+        <span style="font-size:22px;font-weight:900;letter-spacing:0.12em;text-transform:uppercase;color:#fff">XbandGlobal</span>
       </div>
       <div style="padding:40px">
         <h2 style="color:#fff;font-size:20px;font-weight:700;margin:0 0 16px">${title}</h2>
         ${body}
       </div>
       <div style="padding:24px 40px;border-top:1px solid rgba(255,255,255,0.06);font-size:11px;color:#475569;text-align:center">
-        VISTAR Global - Verified Incorporation Setup, Trusted Across Regions<br/>
+        XbandGlobal - Verified Incorporation Setup, Trusted Across Regions<br/>
         This is a transactional email - please do not reply.
       </div>
     </div>`
@@ -110,13 +110,13 @@ export async function sendCreditPurchaseEmail(
         <p style="margin:0;font-size:36px;font-weight:800;color:#fff">${credits} <span style="font-size:16px;color:#64748b">credits</span></p>
         <p style="margin:8px 0 0;font-size:13px;color:#64748b">Charged: $${(amountUsdCents / 100).toFixed(2)} USD</p>
       </div>
-      <p style="color:#94a3b8;font-size:14px">Your credits are now available in your VISTAR dashboard to contact service providers.</p>
+      <p style="color:#94a3b8;font-size:14px">Your credits are now available in your XbandGlobal dashboard to contact service providers.</p>
       <a href="${SITE_URL}/dashboard"
          style="display:inline-block;margin-top:24px;padding:12px 24px;background:#3b82f6;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px">
         Go to Dashboard ->
       </a>
     `)
-    await sendEmail(to, `${credits} Credits Added - VISTAR`, html)
+    await sendEmail(to, `${credits} Credits Added - XbandGlobal`, html)
 }
 
 export async function sendNewLeadEmail(
@@ -128,7 +128,7 @@ export async function sendNewLeadEmail(
     const preview = messagePreview.substring(0, 500) + (messagePreview.length > 500 ? "..." : "")
     const html = wrapLayout("You Have a New Lead", `
       <p style="margin:0 0 16px;color:#94a3b8">
-        A potential client has reached out to <strong style="color:#fff">${providerCompany}</strong> on VISTAR.
+        A potential client has reached out to <strong style="color:#fff">${providerCompany}</strong> on XbandGlobal
       </p>
       <div style="background:rgba(255,255,255,0.04);border-left:4px solid #3b82f6;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:24px">
         <p style="margin:0 0 6px;font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:0.08em">From: ${clientName}</p>
@@ -139,7 +139,7 @@ export async function sendNewLeadEmail(
         View Full Message ->
       </a>
     `)
-    await sendEmail(providerEmail, `New Lead from ${clientName} - VISTAR`, html)
+    await sendEmail(providerEmail, `New Lead from ${clientName} - XbandGlobal`, html)
 }
 
 export async function sendLeadRefundEmail(
@@ -161,7 +161,7 @@ export async function sendLeadRefundEmail(
         View Dashboard ->
       </a>
     `)
-    await sendEmail(clientEmail, `Refund Processed: ${creditsReturned} Credits Returned - VISTAR`, html)
+    await sendEmail(clientEmail, `Refund Processed: ${creditsReturned} Credits Returned - XbandGlobal`, html)
 }
 
 type ProviderStatus = "verified" | "rejected" | "suspended"
@@ -169,7 +169,7 @@ type ProviderStatus = "verified" | "rejected" | "suspended"
 const STATUS_COPY: Record<ProviderStatus, { title: string; body: string; color: string; action?: string }> = {
     verified: {
         title: "Your Provider Application is Approved",
-        body: "Congratulations - your VISTAR provider profile has been verified and is now live on the platform. Clients can now discover and contact you.",
+        body: "Congratulations - your XbandGlobal provider profile has been verified and is now live on the platform. Clients can now discover and contact you.",
         color: "#10b981",
         action: "View Your Profile",
     },
@@ -205,5 +205,5 @@ export async function sendProviderStatusEmail(
         ${cfg.action} ->
       </a>` : ""}
     `)
-    await sendEmail(providerEmail, `${cfg.title} - VISTAR`, html)
+    await sendEmail(providerEmail, `${cfg.title} - XbandGlobal`, html)
 }

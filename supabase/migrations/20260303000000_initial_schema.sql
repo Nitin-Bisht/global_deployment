@@ -1,4 +1,4 @@
--- VISTAR database schema (Supabase/PostgreSQL)
+-- XbandGlobal database schema (Supabase/PostgreSQL)
 -- Intended for a fresh project bootstrap.
 
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";

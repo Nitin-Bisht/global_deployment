@@ -107,6 +107,11 @@
     background-attachment: fixed;
   }
 
+  html.landing-lite body,
+  html.edge-optimized body {
+    background-attachment: scroll;
+  }
+
   /* Cinematic Film Grain Overlay - Extremely Subtle */
   body::after {
     content: "";
@@ -152,6 +157,57 @@
 
   to {
     transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes logo-gooey {
+  0% {
+    opacity: 0.46;
+    transform: scale(0.98);
+    filter: blur(5px) saturate(160%) contrast(118%);
+  }
+
+  50% {
+    opacity: 0.78;
+    transform: scale(1.06);
+    filter: blur(9px) saturate(220%) contrast(145%);
+  }
+
+  100% {
+    opacity: 0.46;
+    transform: scale(0.98);
+    filter: blur(5px) saturate(160%) contrast(118%);
+  }
+}
+
+@keyframes logo-core-fade {
+  0% {
+    opacity: 0.84;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.84;
+  }
+}
+
+@keyframes logo-glow-shift {
+  0% {
+    opacity: 0.28;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 0.28;
+    transform: scale(0.96);
   }
 }
 
@@ -251,7 +307,7 @@
 
   /* Section Stacking Logic - Joondalup Stacked Cards */
   .sticky-card {
-    @apply sticky top-0 min-h-screen w-full flex items-center justify-center overflow-hidden;
+    @apply sticky top-0 h-[100vh] w-full flex items-center justify-center overflow-hidden;
     background: transparent;
     z-index: var(--card-index, 1);
   }
@@ -336,6 +392,18 @@
   }
 }
 
+.logo-gooey-layer {
+  animation: logo-gooey 4.6s ease-in-out infinite;
+}
+
+.logo-core-fade {
+  animation: logo-core-fade 3.6s ease-in-out infinite;
+}
+
+.logo-gooey-glow {
+  animation: logo-glow-shift 4.2s ease-in-out infinite;
+}
+
 .vistar-marquee-track {
   width: max-content;
   display: flex;
@@ -344,10 +412,51 @@
   will-change: transform;
 }
 
+.vistar-marquee-track--static {
+  animation: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .vistar-marquee-track {
     animation: none;
   }
+
+  .logo-gooey-layer,
+  .logo-core-fade,
+  .logo-gooey-glow {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 1024px),
+(prefers-reduced-motion: reduce),
+(pointer: coarse) {
+
+  body::after,
+  .noise-overlay {
+    display: none;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sticky-card-inner {
+    border-top-left-radius: 48px;
+    border-top-right-radius: 48px;
+    box-shadow: 0 -24px 64px rgba(0, 0, 0, 0.55);
+  }
+}
+
+.landing-lite .noise-overlay {
+  display: none !important;
+}
+
+.landing-lite .sticky-card-inner {
+  box-shadow: 0 -18px 48px rgba(0, 0, 0, 0.42);
 }
 
 .bg-immersive-gradient {

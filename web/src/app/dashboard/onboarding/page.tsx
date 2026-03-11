@@ -3,7 +3,7 @@ import { redirect } from "next/navigation"
 import ProviderOnboardingForm from "@/components/onboarding/ProviderOnboardingForm"
 
 export const metadata = {
-    title: "Set Up Your Profile | VISTAR",
+    title: "Set Up Your Profile | XbandGlobal",
 }
 
 export default async function OnboardingPage() {

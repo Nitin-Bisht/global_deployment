@@ -11,7 +11,7 @@ import {
     ArrowUpRight, Sparkles, Activity
 } from "lucide-react"
 
-export const metadata = { title: "Admin Overview | VISTAR" }
+export const metadata = { title: "Admin Overview | XbandGlobal" }
 
 interface StatCardProps {
     label: string

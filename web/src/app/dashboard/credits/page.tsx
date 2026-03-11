@@ -6,8 +6,8 @@ import { createCheckoutSessionAction } from "@/app/actions/credits"
 import { Zap, Star, ArrowRight, CheckCircle2, ShieldCheck, CreditCard, AlertCircle } from "lucide-react"
 
 export const metadata = {
-    title: "Buy Credits | VISTAR",
-    description: "Purchase VISTAR credits to contact verified incorporation providers.",
+    title: "Buy Credits | XbandGlobal",
+    description: "Purchase XbandGlobal credits to contact verified incorporation providers.",
 }
 
 interface PageProps {

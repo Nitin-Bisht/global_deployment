@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════════════════════
--- VISTAR Sample Seed Data
+-- XbandGlobal Sample Seed Data
 -- Run in: Supabase Dashboard → SQL Editor
 -- Creates: 8 verified providers + countries + country links + reviews
 -- These are DEMO accounts to showcase the marketplace to potential clients.
@@ -31,27 +31,27 @@ INSERT INTO auth.users (
   raw_app_meta_data, raw_user_meta_data, is_super_admin, is_sso_user
 )
 VALUES
-  ('11111111-0001-0001-0001-000000000001', 'authenticated', 'authenticated', 'demo.nexus@vistar.test', '$2a$10$DEMO_LOCKED_HASH_NEXUS_1111111111111', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0002-0002-0002-000000000002', 'authenticated', 'authenticated', 'demo.orient@vistar.test', '$2a$10$DEMO_LOCKED_HASH_ORIENT_222222222222', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0003-0003-0003-000000000003', 'authenticated', 'authenticated', 'demo.alpina@vistar.test', '$2a$10$DEMO_LOCKED_HASH_ALPINA_333333333333', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0004-0004-0004-000000000004', 'authenticated', 'authenticated', 'demo.meridian@vistar.test', '$2a$10$DEMO_LOCKED_HASH_MERIDIAN_44444444444', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0005-0005-0005-000000000005', 'authenticated', 'authenticated', 'demo.atlas@vistar.test', '$2a$10$DEMO_LOCKED_HASH_ATLAS_555555555555', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0006-0006-0006-000000000006', 'authenticated', 'authenticated', 'demo.sovereign@vistar.test', '$2a$10$DEMO_LOCKED_HASH_SOVEREIGN_6666666666', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0007-0007-0007-000000000007', 'authenticated', 'authenticated', 'demo.gateway@vistar.test', '$2a$10$DEMO_LOCKED_HASH_GATEWAY_777777777777', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
-  ('11111111-0008-0008-0008-000000000008', 'authenticated', 'authenticated', 'demo.sterling@vistar.test', '$2a$10$DEMO_LOCKED_HASH_STERLING_88888888888', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false)
+  ('11111111-0001-0001-0001-000000000001', 'authenticated', 'authenticated', 'demo.nexus@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_NEXUS_1111111111111', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0002-0002-0002-000000000002', 'authenticated', 'authenticated', 'demo.orient@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_ORIENT_222222222222', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0003-0003-0003-000000000003', 'authenticated', 'authenticated', 'demo.alpina@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_ALPINA_333333333333', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0004-0004-0004-000000000004', 'authenticated', 'authenticated', 'demo.meridian@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_MERIDIAN_44444444444', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0005-0005-0005-000000000005', 'authenticated', 'authenticated', 'demo.atlas@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_ATLAS_555555555555', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0006-0006-0006-000000000006', 'authenticated', 'authenticated', 'demo.sovereign@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_SOVEREIGN_6666666666', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0007-0007-0007-000000000007', 'authenticated', 'authenticated', 'demo.gateway@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_GATEWAY_777777777777', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false),
+  ('11111111-0008-0008-0008-000000000008', 'authenticated', 'authenticated', 'demo.sterling@xbandglobal.test', '$2a$10$DEMO_LOCKED_HASH_STERLING_88888888888', now(), now(), now(), '{"provider":"email","providers":["email"]}'::jsonb, '{"role":"provider"}'::jsonb, false, false)
 ON CONFLICT (id) DO NOTHING;
 
 -- ─── Step 3: Profiles ─────────────────────────────────────────────────────────
 INSERT INTO public.profiles (id, email, role, full_name)
 VALUES
-  ('11111111-0001-0001-0001-000000000001', 'demo.nexus@vistar.test',     'provider', 'Nexus Global Advisors'),
-  ('11111111-0002-0002-0002-000000000002', 'demo.orient@vistar.test',    'provider', 'Orient Corporate Services'),
-  ('11111111-0003-0003-0003-000000000003', 'demo.alpina@vistar.test',    'provider', 'Alpina Fiduciary Group'),
-  ('11111111-0004-0004-0004-000000000004', 'demo.meridian@vistar.test',  'provider', 'Meridian Formation Ltd'),
-  ('11111111-0005-0005-0005-000000000005', 'demo.atlas@vistar.test',     'provider', 'Atlas Business Structuring'),
-  ('11111111-0006-0006-0006-000000000006', 'demo.sovereign@vistar.test', 'provider', 'Sovereign Jurisdictions'),
-  ('11111111-0007-0007-0007-000000000007', 'demo.gateway@vistar.test',   'provider', 'Gateway Corporate Ltd'),
-  ('11111111-0008-0008-0008-000000000008', 'demo.sterling@vistar.test',  'provider', 'Sterling Compliance Group')
+  ('11111111-0001-0001-0001-000000000001', 'demo.nexus@xbandglobal.test',     'provider', 'Nexus Global Advisors'),
+  ('11111111-0002-0002-0002-000000000002', 'demo.orient@xbandglobal.test',    'provider', 'Orient Corporate Services'),
+  ('11111111-0003-0003-0003-000000000003', 'demo.alpina@xbandglobal.test',    'provider', 'Alpina Fiduciary Group'),
+  ('11111111-0004-0004-0004-000000000004', 'demo.meridian@xbandglobal.test',  'provider', 'Meridian Formation Ltd'),
+  ('11111111-0005-0005-0005-000000000005', 'demo.atlas@xbandglobal.test',     'provider', 'Atlas Business Structuring'),
+  ('11111111-0006-0006-0006-000000000006', 'demo.sovereign@xbandglobal.test', 'provider', 'Sovereign Jurisdictions'),
+  ('11111111-0007-0007-0007-000000000007', 'demo.gateway@xbandglobal.test',   'provider', 'Gateway Corporate Ltd'),
+  ('11111111-0008-0008-0008-000000000008', 'demo.sterling@xbandglobal.test',  'provider', 'Sterling Compliance Group')
 ON CONFLICT (id) DO UPDATE SET
   full_name = EXCLUDED.full_name,
   role = EXCLUDED.role;

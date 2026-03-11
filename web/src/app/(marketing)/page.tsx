@@ -1,15 +1,20 @@
 import { LandingExperience } from "@/components/marketing/LandingExperience"
-import { createServerSupabaseClient } from "@/lib/supabase/server"
+import { supabaseAnonKey, supabaseUrl } from "@/lib/supabase/env"
+import { unstable_cache } from "next/cache"
+import { createClient } from "@supabase/supabase-js"
 
-export default async function LandingPage() {
-    const supabase = await createServerSupabaseClient()
-    let metrics = {
-        activeCountries: 0,
-        verifiedProviders: 0,
-        publishedReviews: 0,
-    }
+export const revalidate = 300
 
-    try {
+const getLandingMetrics = unstable_cache(
+    async () => {
+        const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+            auth: {
+                persistSession: false,
+                autoRefreshToken: false,
+                detectSessionInUrl: false,
+            },
+        })
+
         const [activeCountriesCountResult, verifiedProvidersCountResult, publishedReviewsCountResult] = await Promise.all([
             supabase
                 .from("countries")
@@ -24,11 +29,25 @@ export default async function LandingPage() {
                 .select("id", { count: "exact", head: true }),
         ])
 
-        metrics = {
+        return {
             activeCountries: activeCountriesCountResult.count ?? 0,
             verifiedProviders: verifiedProvidersCountResult.count ?? 0,
             publishedReviews: publishedReviewsCountResult.count ?? 0,
         }
+    },
+    ["landing-metrics-v1"],
+    { revalidate: 300 }
+)
+
+export default async function LandingPage() {
+    let metrics = {
+        activeCountries: 0,
+        verifiedProviders: 0,
+        publishedReviews: 0,
+    }
+
+    try {
+        metrics = await getLandingMetrics()
     } catch (error) {
         console.error("Failed to load landing metrics", error)
     }

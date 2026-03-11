@@ -8,7 +8,7 @@ import { MessageSquare } from "lucide-react"
 import LeadsWithReview from "./LeadsWithReview"
 
 export const metadata = {
-    title: "My Messages | VISTAR",
+    title: "My Messages | XbandGlobal",
 }
 
 // LeadWithReviewFlag is now defined in ./types to avoid circular imports
@@ -31,7 +31,7 @@ export default async function ClientLeadsPage() {
             <div className="mx-auto max-w-3xl">
                 <div className="mb-10">
                     <h1 className="text-3xl font-bold text-white">My Messages</h1>
-                    <p className="text-slate-400 mt-2">Providers you&apos;ve contacted through VISTAR.</p>
+                    <p className="text-slate-400 mt-2">Providers you&apos;ve contacted through XbandGlobal.</p>
                 </div>
 
                 {leadsWithFlags.length === 0 ? (

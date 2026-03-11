@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, Clock3 } from "lucide-react"
-import { VistarLogo } from "@/components/ui/VistarLogo"
+import { XbandLogo } from "@/components/ui/XbandLogo"
+
 
 type LegalSection = {
     title: string
@@ -47,7 +48,7 @@ export function LegalPageFrame({ title, subtitle, updatedOn, sections }: LegalPa
                         <ArrowLeft className="h-4 w-4" />
                         Back Home
                     </Link>
-                    <VistarLogo className="w-10 h-10" />
+                    <XbandLogo className="w-10 h-10" />
                 </div>
 
                 <section className="rounded-[2rem] border border-white/10 bg-[#060d1f]/40 p-8 backdrop-blur-3xl shadow-[0_0_80px_rgba(0,0,0,0.8)] sm:p-10 lg:p-12 relative overflow-hidden">

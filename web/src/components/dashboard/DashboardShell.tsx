@@ -8,11 +8,13 @@ import {
     Coins, LayoutDashboard, UserCircle, LogOut, ChevronRight,
     ShieldCheck, MessageSquare, Globe, ListChecks,
 } from "lucide-react"
-import { VistarLogo } from "@/components/ui/VistarLogo"
+import { XbandLogo } from "@/components/ui/XbandLogo"
+
 import { LogoutButton } from "@/components/auth/LogoutButton"
 
 const navigation = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Browse Providers", href: "/providers", icon: Globe },
     { name: "Messages", href: "/dashboard/leads", icon: MessageSquare },
     { name: "Credits", href: "/dashboard/credits", icon: Coins },
 ]
@@ -42,35 +44,38 @@ export function DashboardShell({
             <aside className="fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-white/[0.06] bg-[#020510]/95 backdrop-blur-2xl">
                 <div className="flex h-[72px] items-center gap-3 px-6 shadow-sm relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-50 pointer-events-none" />
-                    <VistarLogo className="h-6 w-6 relative z-10" />
-                    <span className="font-display text-lg uppercase tracking-widest text-white relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">VISTAR</span>
+                    <XbandLogo className="h-6 w-6 relative z-10" />
+
+                    <span className="text-lg font-medium tracking-[-0.01em] text-white relative z-10 drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]">
+                        XBandGlobal
+                    </span>
                 </div>
 
                 <div className="flex-1 overflow-y-auto px-4 py-8 space-y-8 no-scrollbar">
                     {/* Standard nav */}
-                    <nav className="flex flex-col gap-1.5 relative z-10">
+                    <nav className="flex flex-col gap-2 relative z-10">
                         {navigation.map((item) => {
-                            const isActive = pathname === item.href
+                            const isActive = pathname === item.href || (item.name === "Browse Providers" && pathname.startsWith("/providers"))
                             return (
                                 <Link
                                     key={item.name}
                                     href={item.href}
                                     className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
                                         ? "text-white"
-                                        : "text-slate-400 hover:text-slate-200"
+                                        : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.03]"
                                         }`}
                                 >
                                     {isActive && (
                                         <motion.div
                                             layoutId="active-nav"
-                                            className="absolute inset-0 rounded-xl bg-white/10 border border-white/10 drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]"
+                                            className="absolute inset-0 rounded-xl bg-white/10 border border-white/10 drop-shadow-[0_0_20px_rgba(0,210,255,0.4)]"
                                             initial={false}
                                             transition={{ type: "spring", stiffness: 350, damping: 30 }}
                                         />
                                     )}
-                                    <item.icon className={`h-[18px] w-[18px] shrink-0 relative z-10 transition-colors ${isActive ? "text-primary drop-shadow-[0_0_8px_rgba(0,210,255,0.5)]" : "text-slate-500 group-hover:text-slate-300"}`} />
+                                    <item.icon className={`h-[18px] w-[18px] shrink-0 relative z-10 transition-colors ${isActive ? "text-primary drop-shadow-[0_0_12px_rgba(0,210,255,0.6)]" : "text-slate-500 group-hover:text-slate-300"}`} />
                                     <span className="relative z-10">{item.name}</span>
-                                    {isActive && <ChevronRight className="ml-auto h-4 w-4 text-primary/70 relative z-10" />}
+                                    {isActive && <ChevronRight className="ml-auto h-4 w-4 text-primary/80 relative z-10" />}
                                 </Link>
                             )
                         })}
@@ -83,7 +88,7 @@ export function DashboardShell({
                                 <span className="text-[10px] font-display uppercase tracking-[0.2em] text-slate-500">Admin Controls</span>
                                 <div className="h-px flex-1 bg-gradient-to-r from-slate-700 to-transparent" />
                             </div>
-                            <nav className="flex flex-col gap-1.5">
+                            <nav className="flex flex-col gap-2">
                                 {adminNavigation.map((item) => {
                                     const isActive = pathname.startsWith(item.href)
                                     return (
@@ -92,20 +97,20 @@ export function DashboardShell({
                                             href={item.href}
                                             className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-300 ${isActive
                                                 ? "text-blue-50"
-                                                : "text-slate-400 hover:text-slate-200"
+                                                : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.03]"
                                                 }`}
                                         >
                                             {isActive && (
                                                 <motion.div
                                                     layoutId="active-admin-nav"
-                                                    className="absolute inset-0 rounded-xl bg-blue-500/15 border border-blue-500/20 drop-shadow-[0_0_15px_rgba(59,130,246,0.1)]"
+                                                    className="absolute inset-0 rounded-xl bg-blue-500/15 border border-blue-500/20 drop-shadow-[0_0_20px_rgba(59,130,246,0.25)]"
                                                     initial={false}
                                                     transition={{ type: "spring", stiffness: 350, damping: 30 }}
                                                 />
                                             )}
-                                            <item.icon className={`h-[18px] w-[18px] shrink-0 relative z-10 transition-colors ${isActive ? "text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" : "text-slate-500 group-hover:text-slate-300"}`} />
+                                            <item.icon className={`h-[18px] w-[18px] shrink-0 relative z-10 transition-colors ${isActive ? "text-blue-400 drop-shadow-[0_0_12px_rgba(59,130,246,0.6)]" : "text-slate-500 group-hover:text-slate-300"}`} />
                                             <span className="relative z-10">{item.name}</span>
-                                            {isActive && <ChevronRight className="ml-auto h-4 w-4 text-blue-400/70 relative z-10" />}
+                                            {isActive && <ChevronRight className="ml-auto h-4 w-4 text-blue-400/80 relative z-10" />}
                                         </Link>
                                     )
                                 })}
@@ -114,9 +119,9 @@ export function DashboardShell({
                     )}
                 </div>
 
-                <div className="border-t border-white/[0.08] p-4 bg-gradient-to-t from-black/40 to-transparent">
-                    <div className="group flex items-center gap-3 rounded-xl bg-white/[0.02] p-3 border border-white/[0.06] hover:bg-white/[0.04] transition-colors cursor-default relative overflow-hidden shadow-lg">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                <div className="border-t border-white/[0.08] p-4 bg-gradient-to-t from-black/60 to-transparent">
+                    <div className="group flex items-center gap-3 rounded-xl bg-white/[0.02] p-3 border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.1] transition-all duration-300 cursor-default relative overflow-hidden shadow-lg">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-primary/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                         <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-[#0a1224] border border-white/10 shadow-inner">
                             <UserCircle className="h-5 w-5 text-primary" strokeWidth={1.5} />
                         </div>

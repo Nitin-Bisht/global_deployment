@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import Image from "next/image"
 import Link from "next/link"
@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { Hero3D } from "./Hero3D"
 import { JurisdictionCarousel } from "./JurisdictionCarousel"
 import { cn } from "@/lib/utils"
+import { GooeyText } from "@/components/ui/gooey-text-morphing"
+import ColorChangeCards from "@/components/ui/color-change-card"
 
 /* --- Types --------------------------------------------------------------- */
 type LandingMetrics = { activeCountries: number; verifiedProviders: number; publishedReviews: number }
@@ -29,7 +31,7 @@ const FEATURES: FeatureItem[] = [
     {
         title: "Jurisdictional Intelligence",
         subtitle: "The Discovery Engine",
-        desc: "Access structured cost models and tax treaty data across dozens of jurisdictions. VISTAR eliminates manual research by centralizing regulatory requirements and cost structures in one predictive interface.",
+        desc: "Access structured cost models and tax treaty data across dozens of jurisdictions. XBandGlobal eliminates manual research by centralizing regulatory requirements and cost structures in one predictive interface.",
         icon: Orbit,
         image: "/images/discovery.png",
         tone: "field",
@@ -98,12 +100,16 @@ export function LandingExperience({ metrics }: { metrics: LandingMetrics }) {
                 <Cursor shouldReduceMotion={Boolean(shouldReduceMotion)} />
 
                 <HeroPortalTransition stats={stats} shouldReduceMotion={Boolean(shouldReduceMotion)} />
-                <MomentumMarquee />
+
+                {/* -- CORE CAPABILITIES ----------------------- */}
+                <div className="relative z-30 -mt-[20vh] bg-background">
+                    <ColorChangeCards />
+                </div>
 
                 {/* -- CONTENT REVELATION (Stacked Cards) ----------------------- */}
-                <section id="architecture" className="relative bg-background">
+                <section id="architecture" className="relative bg-transparent z-30 mt-20">
                     {FEATURES.map((feature, index) => (
-                        <div key={feature.title} className="h-[148vh] relative">
+                        <div key={feature.title} className="h-[120vh] relative">
                             <StickySection feature={feature} index={index} shouldReduceMotion={Boolean(shouldReduceMotion)} />
                         </div>
                     ))}
@@ -113,7 +119,7 @@ export function LandingExperience({ metrics }: { metrics: LandingMetrics }) {
                 <JurisdictionCarousel />
 
                 {/* -- THE WORKFLOW --------------------------------------------- */}
-                <section id="method" className="py-36 lg:py-52 relative overflow-hidden">
+                <section id="method" className="relative overflow-hidden pt-12 pb-24 lg:pt-20 lg:pb-36 bg-background z-50 -mt-[170vh]">
                     {/* Subtle background texture */}
                     <div className="absolute inset-0 bg-slate-950/60 pointer-events-none" />
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,210,255,0.04),transparent_60%)] pointer-events-none" />
@@ -269,29 +275,13 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
         : { stiffness: 84, damping: 24, mass: 0.4 }
     )
 
-    const heroScale = useTransform(smoothProgress, [0, 0.74], shouldReduceMotion ? [1, 1] : [1, 1.07])
-    const heroOpacity = useTransform(smoothProgress, [0, 0.48, 0.82, 1], shouldReduceMotion ? [1, 1, 0.95, 0.9] : [1, 0.96, 0.72, 0.32])
+    const heroScale = useTransform(smoothProgress, [0, 0.55], shouldReduceMotion ? [1, 1] : [1, 1.07])
+    const heroOpacity = useTransform(smoothProgress, [0, 0.3, 0.55, 0.8], shouldReduceMotion ? [1, 1, 0.95, 0.9] : [1, 0.96, 0.72, 0.32])
     const heroY = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, -24] : [0, -150])
-    const heroTextY = useTransform(smoothProgress, [0, 0.88], shouldReduceMotion ? [0, -18] : [0, -96])
-
-    const veilOpacity = useTransform(smoothProgress, [0.14, 0.78], shouldReduceMotion ? [0, 0.18] : [0, 0.38])
-
-    const panelY = useTransform(smoothProgress, [0.02, 0.52], shouldReduceMotion ? ["18%", "0%"] : ["112%", "0%"])
-    const panelOpacity = useTransform(smoothProgress, [0.04, 0.24, 0.52], shouldReduceMotion ? [0.85, 0.95, 1] : [0, 0.9, 1])
-    const panelClipPath = useTransform(
-        smoothProgress,
-        [0.02, 0.2, 0.52],
-        shouldReduceMotion
-            ? ["inset(0% 0% 0% 0% round 22% 22% 0 0)", "inset(0% 0% 0% 0% round 10% 10% 0 0)", "inset(0% 0% 0% 0% round 0% 0% 0 0)"]
-            : ["inset(0% 0% 0% 0% round 56% 56% 0 0)", "inset(0% 0% 0% 0% round 18% 18% 0 0)", "inset(0% 0% 0% 0% round 0% 0% 0 0)"]
-    )
-    const panelContentY = useTransform(smoothProgress, [0.14, 0.44], shouldReduceMotion ? [16, 0] : [74, 0])
-    const panelContentOpacity = useTransform(smoothProgress, [0.16, 0.44], shouldReduceMotion ? [0.92, 1] : [0, 1])
-    const panelContentScale = useTransform(smoothProgress, [0.12, 0.48], shouldReduceMotion ? [1, 1] : [0.98, 1])
-    const panelGlowOpacity = useTransform(smoothProgress, [0.14, 0.46], shouldReduceMotion ? [0.32, 0.6] : [0, 1])
+    const heroTextY = useTransform(smoothProgress, [0, 0.55], shouldReduceMotion ? [0, -18] : [0, -96])
 
     return (
-        <section id="hero" ref={transitionRef} className="relative h-[270vh]">
+        <section id="hero" ref={transitionRef} className="relative h-[150vh]">
             <div className="sticky top-0 h-screen overflow-hidden">
                 <motion.div style={{ scale: heroScale, opacity: heroOpacity, y: heroY }} className="absolute inset-0">
                     <HeroGlossFlow shouldReduceMotion={shouldReduceMotion} />
@@ -353,14 +343,27 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
                                 </span>
                             </motion.div>
 
-                            {/* Main headline â€” letters stagger in */}
-                            <HeroTitle shouldReduceMotion={shouldReduceMotion} />
+                            {/* Main headline — GooeyText looping words */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -32 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 1.8, ease: [0.23, 1, 0.32, 1], delay: 0.5 }}
+                            >
+                                <GooeyText
+                                    texts={["XBandGlobal", "Incorporate.", "Go Global.", "Scale Fast.", "Form & Fund.", "Expand Now."]}
+                                    morphTime={1.2}
+                                    cooldownTime={2.5}
+                                    justify="start"
+                                    className="h-[clamp(2.5rem,8vw,5.5rem)] w-full"
+                                    textClassName="text-[clamp(2.5rem,8vw,5.5rem)] font-display uppercase leading-[0.9] tracking-[-0.04em] text-white"
+                                />
+                            </motion.div>
 
                             <motion.p
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 1.05 }}
-                                className="mt-3 text-[10px] lg:text-[11px] font-display uppercase tracking-[0.34em] text-white/55"
+                                className="mt-3 text-[9px] sm:text-[10px] lg:text-[11px] font-display uppercase tracking-[0.2em] sm:tracking-[0.34em] text-white/55 max-w-full leading-relaxed break-words"
                             >
                                 {VISTAR_FULL_FORM}
                             </motion.p>
@@ -378,12 +381,12 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
                                         Global Incorporation Marketplace
                                     </p>
                                     <p className="text-sm lg:text-base text-slate-300 leading-relaxed font-light">
-                                        Fund, form &amp; operate globally. VISTAR is a platform for discovering and connecting with incorporation experts across the world.
+                                        Fund, form &amp; operate globally. XBandGlobal is a platform for discovering and connecting with incorporation experts across the world.
                                     </p>
                                 </div>
 
                                 {/* Right: dual CTA buttons */}
-                                <div className="flex items-center gap-4 flex-shrink-0">
+                                <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 flex-shrink-0">
                                     <Link
                                         href="/signup"
                                         data-cursor="action"
@@ -408,16 +411,16 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 1.4 }}
-                            className="flex items-center gap-0 border-t border-white/[0.08] pt-6"
+                            className="grid grid-cols-2 gap-y-6 md:flex md:items-center md:gap-0 border-t border-white/[0.08] pt-6"
                         >
                             {stats.map((item, i) => (
                                 <div key={item.label} className="flex items-center">
-                                    <div className="pr-8 lg:pr-12 space-y-1">
-                                        <p className="text-2xl lg:text-3xl font-bold tracking-tight text-white">{item.value}</p>
-                                        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-500">{item.label}</p>
+                                    <div className="pr-4 md:pr-8 lg:pr-12 space-y-1">
+                                        <p className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-white">{item.value}</p>
+                                        <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-slate-500 break-words max-w-[120px]">{item.label}</p>
                                     </div>
                                     {i < stats.length - 1 && (
-                                        <div className="h-8 w-px bg-white/10 mr-8 lg:mr-12 flex-shrink-0" />
+                                        <div className="hidden md:block h-8 w-px bg-white/10 mr-4 md:mr-8 lg:mr-12 flex-shrink-0" />
                                     )}
                                 </div>
                             ))}
@@ -432,76 +435,6 @@ function HeroPortalTransition({ stats, shouldReduceMotion }: { stats: StatItem[]
                                 <span className="text-[8px] font-display uppercase tracking-[0.38em] text-white/20 hidden lg:block">scroll</span>
                             </div>
                         </motion.div>
-                    </motion.div>
-                </motion.div>
-
-                <motion.div
-                    style={{ opacity: veilOpacity }}
-                    className="absolute inset-0 z-10 pointer-events-none bg-[linear-gradient(to_bottom,rgba(5,10,22,0.04),rgba(5,10,22,0.42)_72%,rgba(4,8,18,0.76))]"
-                />
-
-                <motion.div
-                    style={{ y: panelY, opacity: panelOpacity, clipPath: panelClipPath }}
-                    className="absolute inset-x-0 bottom-0 z-20 h-screen border-t border-white/10 bg-[#02050f]"
-                >
-                    <motion.div
-                        style={{ y: panelContentY, opacity: panelContentOpacity, scale: panelContentScale }}
-                        className="container mx-auto flex h-full flex-col justify-between px-6 pb-14 pt-20 lg:px-12 lg:pb-16 lg:pt-24"
-                    >
-                        <motion.div
-                            style={{ opacity: panelGlowOpacity }}
-                            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_24%,rgba(0,210,255,0.18),transparent_50%)]"
-                        />
-
-                        {/* Centered Manifesto / Vision */}
-                        <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8 relative z-10 pt-8 lg:pt-16">
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                                </span>
-                                <span className="text-[10px] font-display uppercase tracking-widest text-primary">In Active Development</span>
-                            </div>
-
-                            <h2 className="text-4xl sm:text-5xl lg:text-7xl tracking-[-0.04em] leading-[0.9] text-white font-serif italic lowercase">
-                                A transparent foundation for global expansion.
-                            </h2>
-
-                            <p className="text-base leading-relaxed text-slate-300 sm:text-lg max-w-2xl mx-auto">
-                                We are building VISTAR to connect ambitious founders directly with verified incorporation experts worldwide. No hidden markups, no opaque processesâ€”just direct access to the local providers you need to scale.
-                            </p>
-                        </div>
-
-                        {/* 3-Column Focus Areas (replaces the stats row) */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/10 pt-12 mt-16 relative z-10 text-left">
-                            <div className="space-y-4">
-                                <div className="h-10 w-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                                    <Search className="w-4 h-4 text-white/70" />
-                                </div>
-                                <h3 className="text-white font-medium text-lg tracking-tight">Discover Providers</h3>
-                                <p className="text-sm text-slate-400 leading-relaxed">
-                                    Browse a curated directory of local legal and tax experts across key global jurisdictions.
-                                </p>
-                            </div>
-                            <div className="space-y-4">
-                                <div className="h-10 w-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                                    <MessageSquare className="w-4 h-4 text-white/70" />
-                                </div>
-                                <h3 className="text-white font-medium text-lg tracking-tight">Connect Directly</h3>
-                                <p className="text-sm text-slate-400 leading-relaxed">
-                                    Bypass expensive middlemen. Communicate directly with verified operators to establish your entity.
-                                </p>
-                            </div>
-                            <div className="space-y-4">
-                                <div className="h-10 w-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                                    <Shield className="w-4 h-4 text-white/70" />
-                                </div>
-                                <h3 className="text-white font-medium text-lg tracking-tight">Transparent Reviews</h3>
-                                <p className="text-sm text-slate-400 leading-relaxed">
-                                    Make informed decisions based on verified reviews from other founders who have successfully scaled.
-                                </p>
-                            </div>
-                        </div>
                     </motion.div>
                 </motion.div>
             </div>
@@ -686,10 +619,6 @@ function StickySection({ feature, index, shouldReduceMotion }: { feature: Featur
 
     const yText = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, -30] : [120, -220])
     const yImage = useTransform(smoothProgress, [0, 1], shouldReduceMotion ? [0, -16] : [80, -62])
-    const scale = useTransform(smoothProgress, [0.04, 0.52], shouldReduceMotion ? [1, 1] : [0.97, 1])
-    const clipProgress = useTransform(smoothProgress, [0.03, 0.22], [index === 0 ? 0 : (shouldReduceMotion ? 8 : 24), 0])
-    const clipRadius = index === 0 ? 0 : 78
-    const clipPath = useTransform(clipProgress, (p) => `inset(${p}% 0% 0% 0% round ${clipRadius}px ${clipRadius}px 0 0)`)
 
     // Replace heavy clipPath image reveal with a simple hardware-accelerated scale animation
     const imageRevealScale = useTransform(
@@ -725,11 +654,6 @@ function StickySection({ feature, index, shouldReduceMotion }: { feature: Featur
         <div ref={ref} className="sticky-card" style={stickyStyle}>
             <motion.div
                 className={cn("sticky-card-inner", toneClass)}
-                style={{
-                    scale,
-                    opacity: useTransform(smoothProgress, [0, 0.1], shouldReduceMotion ? [1, 1] : [0.86, 1]),
-                    clipPath
-                }}
             >
                 <motion.div
                     style={{ y: yText, opacity: 0.04 }}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
 import { ArrowUpRight } from "lucide-react"
-import { VistarLogo } from "@/components/ui/VistarLogo"
+import { XbandLogo } from "@/components/ui/XbandLogo"
 
 type AuthShellProps = {
     title: string
@@ -16,9 +16,9 @@ export function AuthShell({ title, description, children }: AuthShellProps) {
             <div className="relative z-10 flex w-full flex-col justify-between px-6 py-8 sm:px-12 lg:w-1/2 xl:px-24">
                 <header className="flex items-center justify-between">
                     <Link href="/" className="group inline-flex items-center gap-4">
-                        <VistarLogo className="h-8 w-8 group-hover:scale-105 transition-transform duration-500" />
-                        <span className="text-2xl font-display uppercase tracking-[-0.04em] text-white group-hover:text-primary transition-colors duration-300">
-                            VISTAR
+                        <XbandLogo className="h-8 w-8 group-hover:scale-105 transition-transform duration-500" />
+                        <span className="text-[1.35rem] font-medium tracking-[-0.02em] text-white/95 transition-colors duration-300 group-hover:text-primary">
+                            XBandGlobal
                         </span>
                     </Link>
 
@@ -33,15 +33,18 @@ export function AuthShell({ title, description, children }: AuthShellProps) {
 
                 <div className="flex flex-1 flex-col justify-center max-w-md w-full mx-auto my-12">
                     <div className="mb-8 space-y-3">
-                        <p className="text-[10px] font-display uppercase tracking-[0.3em] text-primary/80">Secure Access</p>
-                        <h1 className="text-4xl tracking-tight text-white font-medium">{title}</h1>
-                        <p className="text-sm leading-relaxed text-slate-400">{description}</p>
+                        <XbandLogo className="w-12 h-12" />
+                        <h1 className="text-4xl font-medium leading-none tracking-[-0.03em] text-white drop-shadow-[0_0_16px_rgba(255,255,255,0.24)]">
+                            XBandGlobal
+                        </h1>
                     </div>
                     {children}
                 </div>
 
                 <footer className="text-sm text-slate-500 flex justify-between items-center">
-                    <p>� {new Date().getFullYear()} VISTAR. All rights reserved.</p>
+                    <p className="text-sm text-white/40">
+                        &copy; {new Date().getFullYear()} XbandGlobal. Integrated world-building protocols.
+                    </p>
                 </footer>
             </div>
 
@@ -93,7 +96,7 @@ export function AuthShell({ title, description, children }: AuthShellProps) {
                             Institutional Execution Lane
                         </h2>
                         <p className="text-lg leading-relaxed text-slate-300 font-light">
-                            VISTAR connects visionary founders with verified incorporation specialists across 190+ jurisdictions. Seamless discovery, immutable trust, zero friction.
+                            XbandGlobal connects visionary founders with verified incorporation specialists across 190+ jurisdictions. Seamless discovery, immutable trust, zero friction.
                         </p>
                     </div>
                 </div>

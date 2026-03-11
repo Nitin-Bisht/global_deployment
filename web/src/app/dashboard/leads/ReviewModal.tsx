@@ -64,7 +64,7 @@ export default function ReviewModal({ leadId, providerName, onClose, onSuccess }
                         <CheckCircle2 className="w-14 h-14 text-emerald-400" />
                         <h2 className="text-xl font-bold text-white">Review Submitted!</h2>
                         <p className="text-slate-400 text-sm">
-                            Thank you — your feedback helps other clients on VISTAR.
+                            Thank you — your feedback helps other clients on XbandGlobal.
                         </p>
                     </div>
                 ) : (

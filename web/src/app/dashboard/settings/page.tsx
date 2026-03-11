@@ -7,7 +7,7 @@ import { AlertTriangle, User, CreditCard, Shield, Loader2 } from "lucide-react"
 // Role: Frontend Developer (skill: frontend-developer)
 // Role: TypeScript Pro (skill: typescript-pro) — strict typing on server props
 
-export const metadata = { title: "Settings | VISTAR" }
+export const metadata = { title: "Settings | XbandGlobal" }
 
 // ─── Danger Zone Delete Form ──────────────────────────────────────────────────
 // Inlined as a thin client-interactive form that calls the deleteAccount action.

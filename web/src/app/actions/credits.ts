@@ -70,7 +70,8 @@ export async function createCheckoutSession(packageId: string): Promise<{ error:
                     currency: "usd",
                     unit_amount: pkg.priceUsdCents,
                     product_data: {
-                        name: `VISTAR ${pkg.credits} Credits — ${pkg.label} Pack`,
+                        name: `XbandGlobal ${pkg.credits} Credits — ${pkg.label} Pack`,
+
                         description: pkg.description,
                         metadata: { package_id: pkg.id, credits: pkg.credits },
                     },

@@ -54,7 +54,7 @@ function LeadInboxCard({ lead }: { lead: LeadWithClient }) {
     )
 }
 
-export const metadata = { title: "Lead Inbox | VISTAR" }
+export const metadata = { title: "Lead Inbox | XbandGlobal" }
 
 export default async function ProviderLeadsPage() {
     const supabase = await createServerSupabaseClient()
@@ -95,7 +95,7 @@ export default async function ProviderLeadsPage() {
                         <Inbox className="w-12 h-12 text-slate-700 mb-4" />
                         <h3 className="text-white font-semibold text-lg">No leads yet</h3>
                         <p className="text-slate-500 text-sm mt-2 max-w-xs">
-                            Once clients contact you through your VISTAR profile, their messages will appear here.
+                            Once clients contact you through your XbandGlobal profile, their messages will appear here.
                         </p>
                     </div>
                 ) : (

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Globe, ArrowRight } from "lucide-react"
 
 export const metadata = {
-    title: "Global Jurisdictions | VISTAR",
+    title: "Global Jurisdictions | XbandGlobal",
     description: "Explore world-class business jurisdictions tailored for global incorporation.",
 }
 

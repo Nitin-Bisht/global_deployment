@@ -22,8 +22,8 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "VISTAR",
-  description: "VISTAR marketplace foundation",
+  title: "XbandGlobal",
+  description: "XbandGlobal marketplace foundation",
 };
 
 export default function RootLayout({

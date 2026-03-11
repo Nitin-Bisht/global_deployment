@@ -5,7 +5,7 @@ export default function ResetPasswordPage() {
     return (
         <AuthShell
             title="Set new password"
-            description="Create a strong password to secure your VISTAR account and continue."
+            description="Create a strong password to secure your XbandGlobal account and continue."
         >
             <ResetPasswordForm />
         </AuthShell>

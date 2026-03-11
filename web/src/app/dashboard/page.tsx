@@ -1,4 +1,4 @@
-﻿import { redirect } from "next/navigation"
+import { redirect } from "next/navigation"
 import { BadgeCheck, Coins, Layers3, Sparkles, UserRound, ArrowRight, Activity, Globe, Compass } from "lucide-react"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
 import { DashboardShell } from "@/components/dashboard/DashboardShell"
@@ -152,11 +152,11 @@ export default async function DashboardPage() {
                             <p className="mt-2 text-xs leading-relaxed text-slate-400">Identify optimal corporate structures based on your strategic requirements and capital allocations.</p>
                         </Link>
 
-                        <div className="group rounded-2xl border border-white/5 bg-[#060D1E]/60 p-6 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] cursor-not-allowed opacity-70">
-                            <UserRound className="h-6 w-6 text-slate-500 mb-4" />
-                            <p className="text-base font-medium text-white tracking-tight">Provider Intelligence</p>
-                            <p className="mt-2 text-xs leading-relaxed text-slate-500">Compare vetted institutional providers using cryptographically-verified performance metrics. (Locked)</p>
-                        </div>
+                        <Link href="/dashboard/admin/providers" className="group rounded-2xl border border-white/5 bg-[#060D1E]/60 p-6 transition-all duration-300 hover:border-primary/30 hover:bg-white/[0.04]">
+                            <UserRound className="h-6 w-6 text-slate-400 group-hover:text-primary transition-colors mb-4" />
+                            <p className="text-base font-medium text-white tracking-tight group-hover:text-primary transition-colors">Provider Intelligence</p>
+                            <p className="mt-2 text-xs leading-relaxed text-slate-400">Compare vetted institutional providers using cryptographically-verified performance metrics.</p>
+                        </Link>
 
                         <div className="group rounded-2xl border border-white/5 bg-[#060D1E]/60 p-6 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04] cursor-not-allowed opacity-70">
                             <BadgeCheck className="h-6 w-6 text-slate-500 mb-4" />

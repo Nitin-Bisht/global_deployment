@@ -10,7 +10,7 @@ export default async function LoginPage({
 
     return (
         <AuthShell
-            title="Log in to VISTAR"
+            title="Log in to XbandGlobal"
             description="Welcome back. Access your global setup workspace and continue execution."
         >
             {deleted === "true" && (

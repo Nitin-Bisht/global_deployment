@@ -4,7 +4,7 @@ const sections = [
     {
         title: "Data We Collect",
         paragraphs: [
-            "VISTAR collects account, authentication, and usage data needed to deliver jurisdiction discovery, provider matching, and secure communication features.",
+            "XbandGlobal collects account, authentication, and usage data needed to deliver jurisdiction discovery, provider matching, and secure communication features.",
             "This can include identity details you submit, session metadata, and product interaction logs used for platform operations.",
         ],
     },
@@ -35,7 +35,7 @@ export default function PrivacyPage() {
     return (
         <LegalPageFrame
             title="Privacy Policy"
-            subtitle="This policy describes how VISTAR handles account and operational data to deliver secure global incorporation workflows."
+            subtitle="This policy describes how XbandGlobal handles account and operational data to deliver secure global incorporation workflows."
             updatedOn="March 6, 2026"
             sections={sections}
         />
